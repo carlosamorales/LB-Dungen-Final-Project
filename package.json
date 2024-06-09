@@ -1,5 +1,14 @@
 {
-  "dependencies": {
-    "dotenv": "^16.4.5"
+  "name": "lb-dungen-final-project",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "start": "npm run start --prefix server",
+    "start-client": "npm run dev --prefix client",
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client"
   }
 }

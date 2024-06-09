@@ -1,11 +1,12 @@
 import React from 'react';
-import Navbar from './Navbar';
+import '../styles/Header.css';
 
-const Header = () => (
-  <header>
-    <h1>The Language Dungeon</h1>
-    <Navbar />
-  </header>
-);
+const Header = () => {
+  return (
+    <div className="header">
+      <img src="path-to-your-header-image.png" alt="Header Image" className="header-image" />
+    </div>
+  );
+};
 
 export default Header;
