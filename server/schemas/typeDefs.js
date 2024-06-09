@@ -4,6 +4,7 @@ const typeDefs = gql`
   type User {
     _id: ID
     username: String
+    avatar: String
   }
 
   type Auth {
@@ -32,7 +33,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, password: String!): Auth
+    addUser(username: String!, password: String!, avatar: String!): Auth
     login(username: String!, password: String!): Auth
     createQuiz(title: String!): Quiz
     addQuestion(quizId: ID!, question: String!, options: [String!]!, correctAnswer: String!): Question!

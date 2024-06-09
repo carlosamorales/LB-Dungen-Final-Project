@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+import Header from './components/Header';
+import Cursor from './components/Cursor';
+import ErrorPage from './pages/ErrorPage.jsx';
+import HomePage from './pages/HomePage';
+import LeaderBoardPage from './pages/LeaderBoardPage.jsx';
+import QuizPage from './pages/QuizPage.jsx';
+import SplashPage from './pages/SplashPage.jsx';
+import Donate from './pages/Donate.jsx';
+
+import './App.css';
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
-  const [count, setCount] = useState(0)
+  const location = useLocation();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <ApolloProvider client={client}>
+      <div className="flex-column justify-flex-start min-100-vh">
+        {location.pathname !== '/' && <Header />}
+        <div className="container">
+          <Cursor />
+          <Routes>
+            <Route path="/" element={<SplashPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/leaderBoard" element={<LeaderBoardPage />} />
+            <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </ApolloProvider>
+  );
 }
 
-export default App
+export default App;
