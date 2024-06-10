@@ -1,3 +1,5 @@
+// client/src/App.jsx
+
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
@@ -8,7 +10,8 @@ import Cursor from './components/Cursor';
 import ErrorPage from './pages/ErrorPage.jsx';
 import HomePage from './pages/HomePage';
 import LeaderBoardPage from './pages/LeaderBoardPage.jsx';
-import QuizPage from './pages/QuizPage.jsx';
+import QuizListPage from './pages/QuizListPage.jsx';
+import QuizDetailPage from './pages/QuizDetailPage.jsx';
 import SplashPage from './pages/SplashPage.jsx';
 import Donate from './pages/Donate.jsx';
 
@@ -46,7 +49,8 @@ function App() {
             <Route path="/" element={<SplashPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/leaderBoard" element={<LeaderBoardPage />} />
-            <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/quiz" element={<QuizListPage />} />
+            <Route path="/quiz/:quizId" element={<QuizDetailPage />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

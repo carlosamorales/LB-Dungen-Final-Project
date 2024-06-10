@@ -1,129 +1,28 @@
+/* src/styles/HomePage.css */
 .home-page {
     background-color: #C3D2C7;
-    background-image: url('src/assets/Grey_Brick_Background.png');
+    background-image: url('../assets/Grey_Brick_Background.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-blend-mode: overlay;
     text-align: center;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     color: #501537;
-    margin: 0 auto;
-    width: 100vw;
-    height: 100vh;
   }
   
   .home-page h1 {
     font-size: 34px;
     color: #3c1b43;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
-  .logo {
-    width: 100%;
+  .home-page .description {
     max-width: 600px;
-    height: auto;
-    margin: 0 auto;
-    display: block;
-  }
-  
-  .home-page img {
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .home-page h2 {
-    font-size: 34px;
-    color: #501537;
-    margin-bottom: 10px;
-  }
-  
-  .home-page .paragraph-container {
-    margin-bottom: 20px;
-  }
-  
-  .home-page .paragraph-text {
-    display: inline-block;
-    font-size: 16px;
-    color: #501537;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 4px;
-    max-width: 20%;
-    margin: 0 auto;
-  }
-    
-  .home-page button {
-    padding: 10px 20px;
     font-size: 18px;
-    background-color: #501537;
-    color: #D4e79e;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
-  }
-  
-  .home-page button:hover {
-    background-color: #3c1b43;
-  }
-  
-  .home-page footer {
-    font-size: 14px;
-    color: #501537;
-    padding-top: 20px;
-    border-top: 1px solid #3c1b43;
-  }
-  
-  .signup-container {
-    background-color: #D4e79e;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 30px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .signup-container h2 {
+    line-height: 1.6;
     color: #3c1b43;
-  }
-  
-  .signup-container input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    border: 1px solid #3c1b43;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .signup-container button {
-    width: 100%;
-  }
-  
-  .avatar-selection {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .avatar-selection img {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    transition: border-color 0.3s ease;
-  }
-  
-  .avatar-selection img.selected {
-    border-color: #501537;
   }
   

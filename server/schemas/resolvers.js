@@ -1,46 +1,60 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Quiz } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
+      console.log('Fetching users');
       return User.find();
     },
-    user: async (_, { username }) => {
-      return User.findOne({ username }).populate('quizzes');
+    user: async (parent, { username }) => {
+      console.log(`Fetching user with username: ${username}`);
+      return User.findOne({ username });
     },
-    quizzes: async () => {
-      return Quiz.find();
+    topPerformers: async () => {
+      console.log('Fetching top performers');
+      return User.find().sort({ points: -1 }).limit(10);
     },
-    quiz: async (_, { id }) => {
-      return Quiz.findById(id);
+    quizzes: async (parent, { level }) => {
+      console.log(`Fetching quizzes with level: ${level}`);
+      return Quiz.find({ level });
     },
   },
   Mutation: {
-    addUser: async (_, { username, password, avatar }) => {
+    addUser: async (parent, { username, password, avatar }) => {
+      console.log(`Adding user with username: ${username}`);
       const user = await User.create({ username, password, avatar });
       const token = signToken(user);
       return { token, user };
     },
-    login: async (_, { username, password }) => {
+    login: async (parent, { username, password }) => {
+      console.log(`Logging in user with username: ${username}`);
       const user = await User.findOne({ username });
 
       if (!user) {
-        throw new Error('Incorrect credentials');
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new Error('Incorrect credentials');
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const token = signToken(user);
       return { token, user };
     },
-    createQuiz: async (_, { title }) => {
-      const newQuiz = new Quiz({ title });
-      return await newQuiz.save();
+    updateUserScore: async (parent, { username, points }, context) => {
+      if (context.user) {
+        console.log(`Updating score for user with username: ${username}`);
+        return User.findOneAndUpdate(
+          { username },
+          { $inc: { points } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('Not logged in');
     },
   },
 };
