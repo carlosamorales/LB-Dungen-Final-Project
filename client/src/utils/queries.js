@@ -1,5 +1,3 @@
-// client/src/utils/queries.js
-
 import { gql } from '@apollo/client';
 
 export const QUERY_TOP_PERFORMERS = gql`
