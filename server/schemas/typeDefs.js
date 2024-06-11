@@ -26,6 +26,7 @@ const typeDefs = gql`
     user(username: String!): User
     topPerformers: [User]
     quizzes(level: String!): [Quiz]
+    quiz(_id: ID!): Quiz
   }
 
   type Mutation {

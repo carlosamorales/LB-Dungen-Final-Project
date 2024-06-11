@@ -1,6 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Quiz } = require('../models');
 const { signToken } = require('../utils/auth');
+const { ObjectId } = require('mongoose').Types;
+
 
 const resolvers = {
   Query: {
@@ -11,6 +13,10 @@ const resolvers = {
     user: async (parent, { username }) => {
       console.log(`Fetching user with username: ${username}`);
       return User.findOne({ username });
+    },
+    quiz: async (parent, { _id }) => {
+      console.log(`Fetching user with quiz: ${_id}`);
+      return Quiz.findOne({ _id: new ObjectId(_id)  });
     },
     topPerformers: async () => {
       console.log('Fetching top performers');
