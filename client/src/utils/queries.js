@@ -24,8 +24,8 @@ export const QUERY_QUIZZES_BY_LEVEL = gql`
 `;
 
 export const QUERY_QUIZ = gql`
-  query getQuiz($quizId: ID!) {
-    quiz(_id: $quizId) {
+query getQuiz($slug: String!) {
+  quiz(slug: $slug) {
       title
       level
       questions {

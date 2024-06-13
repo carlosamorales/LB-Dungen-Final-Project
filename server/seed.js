@@ -21,6 +21,7 @@ const seedDatabase = async () => {
   const quizzes = [
     {
       title: 'Easy Spanish',
+      slug: 'easy-spanish',
       level: 'Easy',
       questions: [
         { question: 'What is "hello" in Spanish?', options: ['Hola', 'Bonjour', 'Hello'], correctAnswer: 'Hola' },
@@ -30,6 +31,7 @@ const seedDatabase = async () => {
     },
     {
       title: 'Medium Spanish',
+      slug: 'medium-spanish',
       level: 'Medium',
       questions: [
         { question: 'What is "good morning" in Spanish?', options: ['Buenos días', 'Bonjour', 'Good morning'], correctAnswer: 'Buenos días' },
@@ -38,6 +40,7 @@ const seedDatabase = async () => {
     },
     {
       title: 'Hard Spanish',
+      slug: 'hard-spanish',
       level: 'Hard',
       questions: [
         { question: 'What is "see you later" in Spanish?', options: ['Hasta luego', 'À plus tard', 'See you later'], correctAnswer: 'Hasta luego' },

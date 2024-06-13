@@ -1,5 +1,3 @@
-// server/models/Quiz.js
-
 const { Schema, model } = require('mongoose');
 
 const questionSchema = new Schema({
@@ -21,6 +19,11 @@ const quizSchema = new Schema({
   title: {
     type: String,
     required: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true,
   },
   level: {
     type: String,

@@ -48,7 +48,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/leaderBoard" element={<LeaderBoardPage />} />
             <Route path="/quiz" element={<QuizListPage />} />
-            <Route path="/quiz/:quizId" element={<QuizDetailPage />} />
+            <Route path="/quiz/:slug" element={<QuizDetailPage />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

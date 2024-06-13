@@ -4,9 +4,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_QUIZ } from '../utils/queries';
 
 const QuizDetailPage = () => {
-  const { quizId } = useParams(); // Ensure this matches your route parameter
+  const { slug } = useParams(); // Ensure this matches your route parameter
   const { loading, error, data } = useQuery(QUERY_QUIZ, {
-    variables: { quizId },
+    variables: { slug },
   });
   const [selectedAnswers, setSelectedAnswers] = useState({});
 
