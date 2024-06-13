@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql', // Ensure this is the correct endpoint
+  uri: 'https://your-server-name.onrender.com/graphql', // Update this to your Render server URL
 });
 
 const authLink = setContext((_, { headers }) => {
