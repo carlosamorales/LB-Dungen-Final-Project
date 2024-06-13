@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
-const db = require('./config/connection');
+const mongoose = require('mongoose');
 require('dotenv').config(); // Load environment variables
 const cors = require('cors'); // Import cors for cross-origin handling
 
@@ -22,6 +22,12 @@ const server = new ApolloServer({
   },
 });
 
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Increase the timeout duration
+});
+
 async function startApolloServer() {
   try {
     await server.start();
@@ -38,7 +44,7 @@ async function startApolloServer() {
       });
     }
 
-    db.once('open', () => {
+    mongoose.connection.once('open', () => {
       app.listen(PORT, () => {
         console.log(`API server running on port ${PORT}!`);
         console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
